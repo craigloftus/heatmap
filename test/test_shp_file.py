@@ -4,11 +4,7 @@
 import os
 import subprocess
 import sys
-
-try:
-    import unittest2 as unittest  # Python 2.6
-except ImportError:
-    import unittest
+import unittest
 
 ROOT_DIR = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
 sys.path.append(ROOT_DIR)
@@ -21,12 +17,11 @@ class Tests(unittest.TestCase):
         try:
             subprocess.check_call(
                 [os.path.join(ROOT_DIR, 'heatmap.py'),
-                 '--shp_file', os.path.join(ROOT_DIR, 'test',
-                                            'test_shape_2.shp'),
                  '-b', 'black',
                  '-r', '3',
                  '-W', '22',
-                 '-o', output_file])
+                 '-o', output_file,
+                 os.path.join(ROOT_DIR, 'test', 'test_shape_2.shp')])
 
         finally:
             try:

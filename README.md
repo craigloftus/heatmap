@@ -31,7 +31,15 @@ indicate something.  This tool is not for that.
 A more thorough description and examples are posted at
  <http://sethoscope.net/heatmap/>
 
+## change to command line
+
+As of version 1.13 (April 2017), the method of specifying input files
+has changed. The old way will continue to be supported for at least
+one year, but the new way is nicer.
+Read [this tutorial](CMDLINE_UPDATING.md) for examples and help on
+switching to the new way.
+
 ## Tests
 
-[![Build Status](https://travis-ci.org/sethoscope/heatmap.png?branch=master)](https://travis-ci.org/sethoscope/heatmap)
-[![Coverage Status](https://coveralls.io/repos/sethoscope/heatmap/badge.png?branch=master)](https://coveralls.io/r/sethoscope/heatmap?branch=master)
+[![Build Status](https://travis-ci.org/sethoscope/heatmap.svg?branch=master)](https://travis-ci.org/sethoscope/heatmap)
+[![Coverage Status](https://coveralls.io/repos/github/sethoscope/heatmap/badge.svg?branch=master)](https://coveralls.io/github/sethoscope/heatmap?branch=master)

@@ -4,11 +4,7 @@
 import os
 import subprocess
 import sys
-
-try:
-    import unittest2 as unittest  # Python 2.6
-except ImportError:
-    import unittest
+import unittest
 
 ROOT_DIR = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
 sys.path.append(ROOT_DIR)
@@ -22,13 +18,13 @@ class Tests(unittest.TestCase):
         try:
             subprocess.check_call(
                 [os.path.join(ROOT_DIR, 'heatmap.py'),
-                 '-p', os.path.join(ROOT_DIR, 'test', 'few-points'),
                  '-b', 'black',
                  '-r', '3',
                  '-W', '22',
                  '-P', 'equirectangular',
                  '-G', os.path.join(ROOT_DIR, 'test', 'gradient.png'),
-                 '-o', output_file])
+                 '-o', output_file,
+                 os.path.join(ROOT_DIR, 'test', 'few-points')])
 
             subprocess.check_call(
                 ['perceptualdiff',
@@ -39,6 +35,7 @@ class Tests(unittest.TestCase):
                 os.remove(output_file)
             except OSError:
                 pass  # perhaps it was never created
+
 
 if __name__ == '__main__':
     unittest.main()

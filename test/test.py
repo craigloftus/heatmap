@@ -3,11 +3,7 @@
 
 import os
 import sys
-
-try:
-    import unittest2 as unittest  # Python 2.6
-except ImportError:
-    import unittest
+import unittest
 
 ROOT_DIR = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
 sys.path.append(ROOT_DIR)
@@ -98,11 +94,11 @@ class Tests(unittest.TestCase):
         filename = "test/few-points"
 
         # Act
-        shapes = hm.shapes_from_file(filename)
-        shapes_list = [shape for shape in shapes]
+        reader = hm.PlainFileReader([filename])
+        shapes = list(reader)
 
         # Assert
-        self.assertEqual(str(shapes_list[0]), "P((2.0, 4.5))")
+        self.assertEqual(str(shapes[0]), "P((2.0, 4.5))")
 
     def test_shapes_from_csv(self):
         # Arrange
@@ -110,11 +106,13 @@ class Tests(unittest.TestCase):
         do_ignore_csv_header = True
 
         # Act
-        shapes = hm.shapes_from_csv(filename, do_ignore_csv_header)
-        shapes_list = [shape for shape in shapes]
+        reader = hm.CSVFileReader([filename],
+                                  {'ignore_csv_header': do_ignore_csv_header})
+        shapes = list(reader)
 
         # Assert
-        self.assertEqual(str(shapes_list[0]), "P((2.0, 4.5))")
+        self.assertEqual(str(shapes[0]), "P((2.0, 4.5))")
+
 
 if __name__ == '__main__':
     unittest.main()
